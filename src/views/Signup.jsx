@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignup } from "../hooks/queries/useAuth";
 import ErrorAlert from "../utils/ErrorAlert";
+import Button from "../components/reusable/Button";
 
 export default function Signup() {
   const nameRef = useRef();
@@ -82,12 +83,15 @@ export default function Signup() {
           autoComplete="new-password"
         />
 
-        <button
-          className="w-full bg-purple-800 text-white py-4 px-4 text-base transition-all hover:bg-purple-900 disabled:opacity-70 disabled:cursor-not-allowed"
+        <Button
+          variant="auth"
+          type="submit"
           disabled={signupMutation.isPending}
+          loading={signupMutation.isPending}
+          loadingText="Creating account..."
         >
-          {signupMutation.isPending ? "Creating account..." : "Signup"}
-        </button>
+          Signup
+        </Button>
 
         <p className="mt-4 text-center text-gray-400 text-base">
           Already registered?{" "}

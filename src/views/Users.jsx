@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { debounce } from "lodash";
 import { useUsers, useDeleteUser } from "../hooks/queries/useUsers";
 import ErrorAlert from "../utils/ErrorAlert";
+import Button from "../components/reusable/Button";
 
 export default function Users() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -60,12 +61,12 @@ export default function Users() {
           <h1 className="text-2xl font-semibold text-gray-900">All Users</h1>
         </div>
         <div>
-          <Link
+          <Button
+            variant="primary"
             to="/users/new"
-            className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Add new user
-          </Link>
+          </Button>
         </div>
       </div>
 
@@ -155,12 +156,12 @@ export default function Users() {
                         >
                           Edit
                         </Link>
-                        <button
+                        <Button
+                          variant="danger"
                           onClick={(ev) => onDelete(u)}
-                          className="text-red-600 hover:text-red-900"
                         >
                           Delete
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   ))}
@@ -179,28 +180,29 @@ export default function Users() {
                     // Rendering the Previous button
                     if (link.label === "&laquo; Previous") {
                       return (
-                        <button
+                        <Button
                           key={index}
+                          variant="pagination"
                           onClick={() => handlePageChange(link.url)}
                           disabled={!link.url}
-                          className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
                         >
                           Previous
-                        </button>
+                        </Button>
                       );
                     }
 
                     // Rendering the Next button
                     if (link.label === "Next &raquo;") {
                       return (
-                        <button
+                        <Button
                           key={index}
+                          variant="pagination"
                           onClick={() => handlePageChange(link.url)}
                           disabled={!link.url}
-                          className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+                          className="ml-3"
                         >
                           Next
-                        </button>
+                        </Button>
                       );
                     }
                     return null;
@@ -231,11 +233,12 @@ export default function Users() {
                         // Rendering the Previous button
                         if (link.label === "&laquo; Previous") {
                           return (
-                            <button
+                            <Button
                               key={index}
+                              variant="paginationNav"
                               onClick={() => handlePageChange(link.url)}
                               disabled={!link.url}
-                              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                              className="rounded-l-md"
                             >
                               <span className="sr-only">Previous</span>
                               <svg
@@ -251,18 +254,19 @@ export default function Users() {
                                   clipRule="evenodd"
                                 />
                               </svg>
-                            </button>
+                            </Button>
                           );
                         }
 
                         // Rendering the Next button
                         if (link.label === "Next &raquo;") {
                           return (
-                            <button
+                            <Button
                               key={index}
+                              variant="paginationNav"
                               onClick={() => handlePageChange(link.url)}
                               disabled={!link.url}
-                              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                              className="rounded-r-md"
                             >
                               <span className="sr-only">Next</span>
                               <svg
@@ -278,28 +282,23 @@ export default function Users() {
                                   clipRule="evenodd"
                                 />
                               </svg>
-                            </button>
+                            </Button>
                           );
                         }
 
                         // Rendering the numbered pagination buttons
                         return (
-                          <button
+                          <Button
                             key={index}
+                            variant={link.active ? "paginationActive" : "pagination"}
                             onClick={() => handlePageChange(link.url)}
                             disabled={!link.url}
-                            className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                              link.active
-                                ? "z-10 bg-blue-50 border-blue-500 text-blue-600"
-                                : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
-                            } ${
-                              !link.url ? "opacity-50 cursor-not-allowed" : ""
-                            }`}
+                            className={!link.url ? "cursor-not-allowed" : ""}
                           >
                             <span
                               dangerouslySetInnerHTML={{ __html: link.label }}
                             ></span>
-                          </button>
+                          </Button>
                         );
                       })}
                     </nav>

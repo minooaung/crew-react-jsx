@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import axiosClient from "../axios-client";
 import { useSelector } from "react-redux";
 import { useLogout } from "../hooks/queries/useAuth";
+import Button from "./reusable/Button";
 
 export default function DefaultLayout() {
   const location = useLocation();
@@ -89,12 +90,12 @@ export default function DefaultLayout() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-gray-700 font-medium">{reduxUser?.name}</span>
-              <button
+              <Button
+                variant="secondary"
                 onClick={onLogout}
-                className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
               >
                 Logout
-              </button>
+              </Button>
             </div>
           </div>
         </header>

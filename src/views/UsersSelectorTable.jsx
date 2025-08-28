@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useUsers, useSelectedUsers } from "../hooks/queries/useUsers";
+import Button from "../components/reusable/Button";
 
 export default function UsersSelectorTable({
   selectedUserIds,
@@ -124,13 +125,14 @@ export default function UsersSelectorTable({
                   className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
                 >
                   {user.name}
-                  <button
+                  <Button
+                    variant="small"
                     onClick={() => toggleUserSelection(id)}
-                    className="ml-1.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-blue-400 hover:bg-blue-200 hover:text-blue-600 focus:outline-none"
                     title="Remove user"
+                    className="ml-1.5"
                   >
                     <span className="sr-only">Remove {user.name}</span>×
-                  </button>
+                  </Button>
                 </div>
               );
             })}
@@ -206,28 +208,29 @@ export default function UsersSelectorTable({
                 // Rendering the Previous button
                 if (link.label === "&laquo; Previous") {
                   return (
-                    <button
+                    <Button
                       key={index}
+                      variant="pagination"
                       onClick={(ev) => handlePageChange(ev, link.url)}
                       disabled={!link.url}
-                      className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
                     >
                       Previous
-                    </button>
+                    </Button>
                   );
                 }
 
                 // Rendering the Next button
                 if (link.label === "Next &raquo;") {
                   return (
-                    <button
+                    <Button
                       key={index}
+                      variant="pagination"
                       onClick={(ev) => handlePageChange(ev, link.url)}
                       disabled={!link.url}
-                      className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+                      className="ml-3"
                     >
                       Next
-                    </button>
+                    </Button>
                   );
                 }
                 return null;
@@ -263,11 +266,12 @@ export default function UsersSelectorTable({
                     // Rendering the Previous button
                     if (link.label === "&laquo; Previous") {
                       return (
-                        <button
+                        <Button
                           key={index}
+                          variant="paginationNav"
                           onClick={(ev) => handlePageChange(ev, link.url)}
                           disabled={!link.url}
-                          className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                          className="rounded-l-md"
                         >
                           <span className="sr-only">Previous</span>
                           <svg
@@ -283,18 +287,19 @@ export default function UsersSelectorTable({
                               clipRule="evenodd"
                             />
                           </svg>
-                        </button>
+                        </Button>
                       );
                     }
 
                     // Rendering the Next button
                     if (link.label === "Next &raquo;") {
                       return (
-                        <button
+                        <Button
                           key={index}
+                          variant="paginationNav"
                           onClick={(ev) => handlePageChange(ev, link.url)}
                           disabled={!link.url}
-                          className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                          className="rounded-r-md"
                         >
                           <span className="sr-only">Next</span>
                           <svg
@@ -310,28 +315,25 @@ export default function UsersSelectorTable({
                               clipRule="evenodd"
                             />
                           </svg>
-                        </button>
+                        </Button>
                       );
                     }
 
                     // Rendering the numbered pagination buttons
                     return (
-                      <button
+                      <Button
                         key={index}
+                        variant={link.active ? "paginationActive" : "pagination"}
                         onClick={(ev) => handlePageChange(ev, link.url)}
                         disabled={!link.url}
-                        className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                          link.active
-                            ? "z-10 bg-blue-50 border-blue-500 text-blue-600" // Style for Active page
-                            : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" // Style for Inactive page
-                        } ${!link.url ? "opacity-50 cursor-not-allowed" : ""}`}
+                        className={!link.url ? "cursor-not-allowed" : ""}
                       >
                         {link.label === "&laquo; Previous"
                           ? "Previous"
                           : link.label === "Next &raquo;"
                           ? "Next"
                           : link.label}
-                      </button>
+                      </Button>
                     );
                   })}
                 </nav>
