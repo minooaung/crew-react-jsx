@@ -7,7 +7,7 @@ import {
   useCreateOrganisation,
   useUpdateOrganisation,
 } from "../hooks/queries/useOrganisations";
-import ErrorAlert from "../utils/ErrorAlert";
+import ErrorAlert from "../components/reusable/ErrorAlert";
 import Button from "../components/reusable/Button";
 
 export default function OrganisationForm() {

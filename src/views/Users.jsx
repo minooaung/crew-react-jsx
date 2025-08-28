@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { debounce } from "lodash";
 import { useUsers, useDeleteUser } from "../hooks/queries/useUsers";
-import ErrorAlert from "../utils/ErrorAlert";
+import ErrorAlert from "../components/reusable/ErrorAlert";
 import Button from "../components/reusable/Button";
 
 export default function Users() {

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignup } from "../hooks/queries/useAuth";
-import ErrorAlert from "../utils/ErrorAlert";
+import ErrorAlert from "../components/reusable/ErrorAlert";
 import Button from "../components/reusable/Button";
 
 export default function Signup() {
